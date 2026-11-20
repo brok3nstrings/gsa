@@ -3,6 +3,28 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
+/**
+ * Theme colors using Mantine CSS variables for automatic dark/light mode support.
+ *
+ * Light mode: Mantine variables resolve to light palette values.
+ * Dark mode: Mantine variables resolve to dark palette values.
+ *
+ * Semantic ui-lib variables (defined in @greenbone/ui-lib cssVariables.css):
+ *   --text-color-black, --text-color-white, --text-color-bright
+ *   --background-color-white, --background-color-success, etc.
+ *   --border-color-bright, --border-color-error, etc.
+ *   --icon-color-success, --icon-color-error, etc.
+ *
+ * Mantine palette variables (auto-adapt via data-mantine-color-scheme):
+ *   --mantine-color-black, --mantine-color-white
+ *   --mantine-color-gray-0 through --mantine-color-gray-9
+ *   --mantine-color-green-0 through --mantine-color-green-9
+ *   --mantine-color-red-0 through --mantine-color-red-9
+ *   --mantine-color-blue-0 through --mantine-color-blue-9
+ *   --mantine-color-orange-0 through --mantine-color-orange-9
+ *   --mantine-color-yellow-0 through --mantine-color-yellow-9
+ */
+
 interface ThemeLayer {
   menu: number;
   aboveAll: number;
@@ -61,56 +83,64 @@ interface ThemeInterface {
 }
 
 const Theme: ThemeInterface = {
-  /* source styleguide */
-  lightGreen: '#A1DDBA',
-  green: '#11ab51',
+  /* Greens — use Mantine green palette (auto-adapts) */
+  lightGreen: 'var(--mantine-color-green-2)',
+  green: 'var(--mantine-color-green-6)',
 
-  lightGray: '#e5e5e5', // used by: disabled inputs
-  mediumDarkGray: '#c2c2c2',
-  mediumGray: '#7F7F7F',
-  darkGray: '#4C4C4C',
+  /* Grays — use Mantine gray palette (auto-adapts) */
+  lightGray: 'var(--mantine-color-gray-2)',
+  mediumDarkGray: 'var(--mantine-color-gray-4)',
+  mediumGray: 'var(--mantine-color-gray-5)',
+  darkGray: 'var(--mantine-color-gray-7)',
 
-  /* source own */
-  white: '#fff',
-  dialogGray: '#f3f3f3', // used by: dialog and dashboard display backgrounds
-  inputBorderGray: '#bfbfbf', // used by: form field, (Multi-)Select, ProgressBar
-  black: '#000',
-  loginButtonGray: '#4c4c4d', // used by: login button
-  loginButtonHover: '#212121', // used by: login button at hover
+  /* White/Black — use semantic ui-lib variables (swap in dark mode) */
+  white: 'var(--text-color-white)',
+  dialogGray: 'var(--background-color-white)',
+  inputBorderGray: 'var(--border-color-bright)',
+  black: 'var(--text-color-black)',
+  loginButtonGray: 'var(--mantine-color-gray-7)',
+  loginButtonHover: 'var(--mantine-color-gray-9)',
 
-  lightRed: '#fdf2f2', // used by: dialog errors background
-  mediumLightRed: '#f4b1b2', // used by: dialog errors border
-  warningRed: '#e5393d', // used for warning font color at login dialog
-  darkRed: '#c12c30', // used by: dialog errors font
-  errorRed: '#c83814', // used by: progressbar
+  /* Reds — use Mantine red palette (auto-adapts) */
+  lightRed: 'var(--mantine-color-red-0)',
+  mediumLightRed: 'var(--mantine-color-red-3)',
+  warningRed: 'var(--mantine-color-red-6)',
+  darkRed: 'var(--mantine-color-red-7)',
+  errorRed: 'var(--mantine-color-red-6)',
 
-  complianceYes: '#4cb045',
-  complianceNo: '#D80000',
-  complianceIncomplete: 'orange',
-  complianceUndefined: 'silver',
+  /* Compliance colors — use Mantine palette */
+  complianceYes: 'var(--mantine-color-green-6)',
+  complianceNo: 'var(--mantine-color-red-7)',
+  complianceIncomplete: 'var(--mantine-color-orange-5)',
+  complianceUndefined: 'var(--mantine-color-gray-4)',
 
-  lightBlue: '#d6e6fd', // used by InfoPanel and dashboard hovering
-  mediumBlue: '#77acf7', // used by active/hovered items in Select
-  blue: '#0a53b8', // used by: links
-  severityLowBlue: '#4f91c7', // used by: progressbar
+  /* Blues — use Mantine blue palette (auto-adapts) */
+  lightBlue: 'var(--mantine-color-blue-1)',
+  mediumBlue: 'var(--mantine-color-blue-4)',
+  blue: 'var(--mantine-color-blue-6)',
+  severityLowBlue: 'var(--mantine-color-blue-5)',
 
-  severityWarnYellow: '#f0a519', // used by: progressbar
+  /* Yellow — use Mantine yellow palette (auto-adapts) */
+  severityWarnYellow: 'var(--mantine-color-yellow-7)',
 
-  severityClassLog: '#DDDDDD',
-  severityClassLow: '#A0C5F9',
-  severityClassMedium: '#F3B865',
-  severityClassHigh: '#F0868A',
-  severityClassCritical: '#C12C30',
+  /* Severity classes — use Mantine palette */
+  severityClassLog: 'var(--mantine-color-gray-3)',
+  severityClassLow: 'var(--mantine-color-blue-3)',
+  severityClassMedium: 'var(--mantine-color-orange-4)',
+  severityClassHigh: 'var(--mantine-color-red-4)',
+  severityClassCritical: 'var(--mantine-color-red-7)',
 
-  statusNewGreen: '#99be48', // used by: progressbar
-  statusRunGreen: '#70c000', // used by: progressbar
-  statusLogGray: '#808080', // used by: progressbar
+  /* Status colors — use Mantine palette */
+  statusNewGreen: 'var(--mantine-color-green-5)',
+  statusRunGreen: 'var(--mantine-color-green-6)',
+  statusLogGray: 'var(--mantine-color-gray-5)',
 
-  paleGreen: '#99BE48', // used by: compliance status bar
+  /* Pale green — use Mantine palette */
+  paleGreen: 'var(--mantine-color-green-5)',
 
-  /* source ? */
-  darkGreen: '#074320', // RGB: 7, 67, 32
-  darkGreenTransparent: 'rgba(7, 67, 32, 0.8)', // corresponds to darkGreen
+  /* Dark greens — use Mantine palette */
+  darkGreen: 'var(--mantine-color-green-8)',
+  darkGreenTransparent: 'rgba(7, 67, 32, 0.8)',
 
   Layers: {
     menu: 600,
@@ -122,8 +152,8 @@ const Theme: ThemeInterface = {
   },
 
   Font: {
-    default: 'Verdana, sans-serif',
-    dialog: 'Trebuchet MS, Tahoma, Verdana, Arial, sans-serif',
+    default: 'Roboto, sans-serif',
+    dialog: 'Roboto, sans-serif',
     defaultSize: 'var(--mantine-font-size-md)',
   },
 };

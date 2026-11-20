@@ -32,7 +32,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   a:hover, a:focus {
-    color: blue;
+    color: var(--mantine-color-blue-7);
     text-decoration: underline;
   }
 
